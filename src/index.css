@@ -1,6 +1,6 @@
-@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
-@import 'tailwindcss';
-@import 'animations.css';
+@import url("https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap");
+@import "tailwindcss";
+
 
 @theme {
   --font-display: "General Sans", sans-serif;
@@ -9,22 +9,55 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: #080808;
+  background-color: #111111;
 }
 
 body {
   font-family: var(--font-sans);
   font-weight: 400;
   color: #c8c8c8;
-  background-color: #080808;
+  background-color: #111111;
   -webkit-font-smoothing: antialiased;
-}
-
-::-webkit-scrollbar {
-  display: none;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
 }
 
 * {
+  box-sizing: border-box;
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+a {
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 640px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
 }

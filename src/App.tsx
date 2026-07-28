@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useEffect, useState } from "react"
 
 // ---- TYPES ----
 interface Project {
@@ -169,14 +169,14 @@ function Nav() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`nav-fade fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled ? "border-b border-[#2a2a2a] bg-[#111111]/95 backdrop-blur-sm" : ""
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
         <a
           href="#"
-          className="font-display font-extrabold text-base tracking-[0.22em] text-[#f3f3f3] uppercase"
+          className="font-display font-extrabold text-base tracking-[0.22em] text-[#f3f3f3] uppercase fade-in"
         >
           Kaj Niemeijer
         </a>
@@ -186,7 +186,7 @@ function Nav() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-sans tracking-[0.14em] text-[#b0b0b0] uppercase hover:text-[#ffffff] transition-colors duration-200"
+              className="link-underline text-sm font-sans tracking-[0.14em] text-[#b0b0b0] uppercase hover:text-[#ffffff]"
             >
               {link.label}
             </a>
@@ -217,7 +217,7 @@ function Nav() {
       </div>
 
       {menuOpen && (
-        <div className="md:hidden border-t border-[#2a2a2a] bg-[#111111] px-6 py-6 flex flex-col gap-5">
+        <div className="md:hidden border-t border-[#2a2a2a] bg-[#111111] px-6 py-6 flex flex-col gap-5 fade-down">
           {links.map((link) => (
             <a
               key={link.href}
@@ -240,7 +240,7 @@ function Hero() {
     <section className="relative min-h-screen flex flex-col justify-end pb-24 px-6 md:px-12 pt-32 overflow-hidden">
       <div className="absolute inset-0 flex items-center justify-start pointer-events-none select-none overflow-hidden">
         <span
-          className="font-display font-extrabold leading-none tracking-tight text-[#1b1b1b] whitespace-nowrap pl-4"
+          className="font-display font-extrabold leading-none tracking-tight text-[#1b1b1b] whitespace-nowrap pl-4 fade-in"
           style={{ fontSize: "clamp(140px,22vw,320px)" }}
         >
           KAJ
@@ -250,12 +250,12 @@ function Hero() {
       <div className="relative max-w-7xl mx-auto w-full">
         <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-end">
           <div>
-            <p className="text-sm font-sans tracking-[0.24em] text-[#9a9a9a] uppercase mb-5">
+            <p className="text-sm font-sans tracking-[0.24em] text-[#9a9a9a] uppercase mb-5 fade-up">
               Industrieel Productontwerper — NL
             </p>
 
             <h1
-              className="font-display font-extrabold leading-[0.92] tracking-tight text-[#f5f5f5] uppercase mb-10"
+              className="font-display font-extrabold leading-[0.92] tracking-tight text-[#f5f5f5] uppercase mb-10 pop-up pop-delay-1"
               style={{ fontSize: "clamp(52px,9vw,110px)" }}
             >
               Kaj
@@ -265,7 +265,7 @@ function Hero() {
 
             <a
               href="#projecten"
-              className="inline-flex items-center gap-3 text-sm font-sans tracking-[0.16em] text-[#f5f5f5] uppercase border-b border-[#f5f5f5] pb-1 hover:text-[#b5b5b5] hover:border-[#b5b5b5] transition-colors duration-200"
+              className="button-soft inline-flex items-center gap-3 text-sm font-sans tracking-[0.16em] text-[#f5f5f5] uppercase border-b border-[#f5f5f5] pb-1 hover:text-[#b5b5b5] hover:border-[#b5b5b5] pop-up pop-delay-2"
             >
               Bekijk projecten
               <svg width="18" height="8" viewBox="0 0 18 8" fill="none" aria-hidden>
@@ -275,7 +275,7 @@ function Hero() {
           </div>
 
           <div className="md:pb-2">
-            <p className="text-lg font-sans font-light leading-relaxed text-[#b8b8b8] max-w-md">
+            <p className="text-lg font-sans font-light leading-relaxed text-[#b8b8b8] max-w-md pop-up pop-delay-3">
               Ik ontwerp producten die werken doordat ik begrijp waarom een probleem bestaat.
               Mijn aanpak is zorgvuldig en onderbouwd — van eerste analyse tot productierijp ontwerp.
               Ik waardeer samenwerking en zie feedback als een middel om dieper inzicht te krijgen,
@@ -285,7 +285,7 @@ function Hero() {
         </div>
       </div>
 
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center">
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center fade-in stagger-3">
         <div className="w-px h-14 bg-gradient-to-b from-transparent to-[#3a3a3a]" />
       </div>
     </section>
@@ -318,7 +318,7 @@ function ProcessSection() {
   ]
 
   return (
-    <section id="proces" className="py-28 md:py-36 px-6 md:px-12 border-t border-[#2a2a2a]">
+    <section id="proces" className="section-reveal py-28 md:py-36 px-6 md:px-12 border-t border-[#2a2a2a]">
       <div className="max-w-7xl mx-auto">
         <div className="mb-14 flex items-center gap-6">
           <span className="text-sm font-sans tracking-[0.24em] text-[#9a9a9a] uppercase whitespace-nowrap">
@@ -328,7 +328,7 @@ function ProcessSection() {
         </div>
 
         <h2
-          className="font-display font-extrabold leading-none tracking-tight text-[#f5f5f5] uppercase mb-16 md:mb-20"
+          className="reveal font-display font-extrabold leading-none tracking-tight text-[#f5f5f5] uppercase mb-16 md:mb-20"
           style={{ fontSize: "clamp(44px,7vw,88px)" }}
         >
           Hoe ik werk
@@ -338,11 +338,12 @@ function ProcessSection() {
           {steps.map((step, i) => (
             <div
               key={step.num}
-              className={`p-8 border-t border-[#2a2a2a] ${
+              className={`reveal p-8 border-t border-[#2a2a2a] ${
                 i < 3 ? "lg:border-r lg:border-[#2a2a2a]" : ""
               } ${i % 2 === 0 ? "md:border-r md:border-[#2a2a2a] lg:border-r-0" : ""} ${
                 i === 2 ? "lg:border-r lg:border-[#2a2a2a]" : ""
               }`}
+              style={{ transitionDelay: `${i * 90}ms` }}
             >
               <span
                 className="block font-display font-extrabold text-[#252525] leading-none mb-7"
@@ -367,10 +368,14 @@ function ProcessSection() {
 }
 
 // ---- PROJECT CARD ----
-function ProjectCard({ project, onClick }: { project: Project; onClick: () => void }) {
+function ProjectCard({ project, onClick, delay = 0 }: { project: Project; onClick: () => void; delay?: number }) {
   return (
-    <button onClick={onClick} className="group text-left w-full focus:outline-none">
-      <div className="relative overflow-hidden bg-[#151515] mb-5 aspect-[4/3]">
+    <button
+      onClick={onClick}
+      className="reveal group text-left w-full focus:outline-none"
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      <div className="media-zoom relative overflow-hidden bg-[#151515] mb-5 aspect-[4/3] card-soft">
         <img
           src={project.thumbnail}
           alt={project.title}
@@ -408,10 +413,8 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose()
-      if (e.key === "ArrowRight")
-        setImgIndex((i) => (i + 1) % project.images.length)
-      if (e.key === "ArrowLeft")
-        setImgIndex((i) => (i - 1 + project.images.length) % project.images.length)
+      if (e.key === "ArrowRight") setImgIndex((i) => (i + 1) % project.images.length)
+      if (e.key === "ArrowLeft") setImgIndex((i) => (i - 1 + project.images.length) % project.images.length)
     }
 
     document.addEventListener("keydown", handler)
@@ -423,11 +426,8 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
     }
   }, [onClose, project.images.length])
 
-  const prev = () =>
-    setImgIndex((i) => (i - 1 + project.images.length) % project.images.length)
-
-  const next = () =>
-    setImgIndex((i) => (i + 1) % project.images.length)
+  const prev = () => setImgIndex((i) => (i - 1 + project.images.length) % project.images.length)
+  const next = () => setImgIndex((i) => (i + 1) % project.images.length)
 
   return (
     <div
@@ -436,20 +436,20 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
         if (e.target === e.currentTarget) onClose()
       }}
     >
-      <div className="w-full max-w-6xl max-h-[90vh] overflow-hidden bg-[#161616] border border-[#2a2a2a] flex flex-col">
-        <div className="flex justify-between items-center px-6 md:px-8 py-5 border-b border-[#2a2a2a] shrink-0">
-          <div>
+      <div className="w-full max-w-6xl max-h-[90vh] overflow-hidden bg-[#161616] border border-[#2a2a2a] flex flex-col fade-scale">
+        <div className="flex justify-between items-center px-6 md:px-8 py-5 border-b border-[#2a2a2a] shrink-0 gap-4">
+          <div className="min-w-0">
             <p className="text-xs font-sans tracking-[0.14em] text-[#9a9a9a] uppercase mb-1">
               {project.category} — {project.year}
             </p>
-            <h2 className="font-display font-bold text-[#f0f0f0] text-3xl md:text-4xl uppercase tracking-wide leading-none">
+            <h2 className="font-display font-bold text-[#f0f0f0] text-2xl md:text-4xl uppercase tracking-wide leading-none break-words">
               {project.title}
             </h2>
           </div>
 
           <button
             onClick={onClose}
-            className="w-10 h-10 flex items-center justify-center text-[#9a9a9a] hover:text-[#f0f0f0] transition-colors border border-[#2a2a2a] hover:border-[#7a7a7a]"
+            className="w-10 h-10 flex items-center justify-center text-[#9a9a9a] hover:text-[#f0f0f0] transition-colors border border-[#2a2a2a] hover:border-[#7a7a7a] shrink-0"
             aria-label="Sluiten"
           >
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
@@ -469,10 +469,10 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
               />
             </div>
 
-            <div className="flex items-center justify-between px-6 py-4 border-t border-[#222222]">
+            <div className="flex items-center justify-between px-4 md:px-6 py-4 border-t border-[#222222] gap-3">
               <button
                 onClick={prev}
-                className="flex items-center gap-2 text-xs font-sans tracking-[0.14em] text-[#b0b0b0] uppercase hover:text-[#f0f0f0] transition-colors"
+                className="flex items-center gap-2 text-[11px] md:text-xs font-sans tracking-[0.14em] text-[#b0b0b0] uppercase hover:text-[#f0f0f0]"
               >
                 <svg width="14" height="8" viewBox="0 0 14 8" fill="none" aria-hidden>
                   <path d="M14 4H2M2 4L5 1.5M2 4L5 6.5" stroke="currentColor" strokeWidth="0.75" />
@@ -480,13 +480,13 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
                 Vorige
               </button>
 
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2">
                 {project.images.map((_, i) => (
                   <button
                     key={i}
                     onClick={() => setImgIndex(i)}
                     className={`h-px transition-all duration-300 ${
-                      i === imgIndex ? "w-8 bg-[#f0f0f0]" : "w-4 bg-[#4a4a4a] hover:bg-[#888]"
+                      i === imgIndex ? "w-7 md:w-8 bg-[#f0f0f0]" : "w-3 md:w-4 bg-[#4a4a4a] hover:bg-[#888]"
                     }`}
                     aria-label={`Foto ${i + 1}`}
                   />
@@ -495,7 +495,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
 
               <button
                 onClick={next}
-                className="flex items-center gap-2 text-xs font-sans tracking-[0.14em] text-[#b0b0b0] uppercase hover:text-[#f0f0f0] transition-colors"
+                className="flex items-center gap-2 text-[11px] md:text-xs font-sans tracking-[0.14em] text-[#b0b0b0] uppercase hover:text-[#f0f0f0]"
               >
                 Volgende
                 <svg width="14" height="8" viewBox="0 0 14 8" fill="none" aria-hidden>
@@ -576,26 +576,25 @@ function ProjectsSection() {
         </div>
 
         <h2
-          className="font-display font-extrabold leading-none tracking-tight text-[#f5f5f5] uppercase mb-16 md:mb-20"
+          className="section-reveal font-display font-extrabold leading-none tracking-tight text-[#f5f5f5] uppercase mb-16 md:mb-20"
           style={{ fontSize: "clamp(44px,7vw,88px)" }}
         >
           Projecten
         </h2>
 
         <div className="grid md:grid-cols-2 gap-x-10 gap-y-16">
-          {PROJECTS.map((project) => (
+          {PROJECTS.map((project, i) => (
             <ProjectCard
               key={project.id}
               project={project}
               onClick={() => setActive(project)}
+              delay={i * 120}
             />
           ))}
         </div>
       </div>
 
-      {active && (
-        <ProjectModal project={active} onClose={() => setActive(null)} />
-      )}
+      {active && <ProjectModal project={active} onClose={() => setActive(null)} />}
     </section>
   )
 }
@@ -603,7 +602,7 @@ function ProjectsSection() {
 // ---- SKILLS ----
 function SkillsSection() {
   return (
-    <section id="skills" className="py-28 md:py-36 px-6 md:px-12 border-t border-[#2a2a2a]">
+    <section id="skills" className="section-reveal py-28 md:py-36 px-6 md:px-12 border-t border-[#2a2a2a]">
       <div className="max-w-7xl mx-auto">
         <div className="mb-14 flex items-center gap-6">
           <span className="text-sm font-sans tracking-[0.24em] text-[#9a9a9a] uppercase whitespace-nowrap">
@@ -612,34 +611,35 @@ function SkillsSection() {
           <div className="flex-1 h-px bg-[#2a2a2a]" />
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 md:gap-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
           <div>
             <h2
-              className="font-display font-extrabold leading-none tracking-tight text-[#f5f5f5] uppercase mb-6"
+              className="reveal font-display font-extrabold leading-none tracking-tight text-[#f5f5f5] uppercase mb-6"
               style={{ fontSize: "clamp(44px,7vw,88px)" }}
             >
               Skills
             </h2>
 
-            <p className="text-base md:text-lg font-sans font-light text-[#b5b5b5] leading-relaxed max-w-sm">
+            <p className="reveal reveal-delay-1 text-base md:text-lg font-sans font-light text-[#b5b5b5] leading-relaxed max-w-sm">
               Mijn vaardigheden verbinden analytisch onderzoek met technisch maakwerk.
               Ik werk het liefst in trajecten waarbij beide kanten nodig zijn.
             </p>
           </div>
 
-          <div>
+          <div className="min-w-0">
             {SKILLS.map((skill, i) => (
               <div
                 key={skill.name}
-                className={`py-6 flex items-baseline justify-between gap-6 ${
+                className={`reveal py-5 md:py-6 flex flex-col md:flex-row md:items-baseline md:justify-between gap-2 md:gap-6 ${
                   i < SKILLS.length - 1 ? "border-b border-[#242424]" : ""
                 } ${i === 0 ? "border-t border-[#242424]" : ""}`}
+                style={{ transitionDelay: `${i * 90}ms` }}
               >
-                <span className="font-display font-semibold text-[#e3e3e3] text-xl md:text-2xl uppercase tracking-wide">
+                <span className="font-display font-semibold text-[#e3e3e3] text-lg sm:text-xl md:text-2xl uppercase tracking-wide leading-snug md:pr-4">
                   {skill.name}
                 </span>
 
-                <span className="text-sm font-sans text-[#9f9f9f] text-right shrink-0 tracking-wide">
+                <span className="text-sm font-sans text-[#9f9f9f] md:text-right tracking-wide leading-relaxed break-words">
                   {skill.tools}
                 </span>
               </div>
@@ -656,7 +656,7 @@ function FAQSection() {
   const [open, setOpen] = useState<number | null>(null)
 
   return (
-    <section id="faq" className="py-28 md:py-36 px-6 md:px-12 border-t border-[#2a2a2a]">
+    <section id="faq" className="section-reveal py-28 md:py-36 px-6 md:px-12 border-t border-[#2a2a2a]">
       <div className="max-w-7xl mx-auto">
         <div className="mb-14 flex items-center gap-6">
           <span className="text-sm font-sans tracking-[0.24em] text-[#9a9a9a] uppercase whitespace-nowrap">
@@ -668,7 +668,7 @@ function FAQSection() {
         <div className="grid md:grid-cols-2 gap-12 md:gap-20">
           <div>
             <h2
-              className="font-display font-extrabold leading-none tracking-tight text-[#f5f5f5] uppercase"
+              className="reveal font-display font-extrabold leading-none tracking-tight text-[#f5f5f5] uppercase"
               style={{ fontSize: "clamp(44px,7vw,88px)" }}
             >
               FAQ
@@ -679,7 +679,8 @@ function FAQSection() {
             {FAQ_ITEMS.map((item, i) => (
               <div
                 key={i}
-                className={`border-b border-[#2a2a2a] ${i === 0 ? "border-t" : ""}`}
+                className={`reveal border-b border-[#2a2a2a] ${i === 0 ? "border-t" : ""}`}
+                style={{ transitionDelay: `${i * 70}ms` }}
               >
                 <button
                   className="w-full py-6 flex items-start justify-between gap-4 text-left group"
@@ -689,10 +690,7 @@ function FAQSection() {
                     {item.q}
                   </span>
 
-                  <span
-                    className="shrink-0 mt-1 text-[#8e8e8e] transition-transform duration-200 group-hover:text-[#d0d0d0]"
-                    style={{ transform: open === i ? "rotate(45deg)" : "rotate(0deg)" }}
-                  >
+                  <span className={`accordion-icon shrink-0 mt-1 text-[#8e8e8e] ${open === i ? "is-open" : ""}`}>
                     <svg width="12" height="12" viewBox="0 0 11 11" fill="none" aria-hidden>
                       <path d="M5.5 0V11M0 5.5H11" stroke="currentColor" strokeWidth="0.75" />
                     </svg>
@@ -720,7 +718,7 @@ function FAQSection() {
 // ---- CONTACT ----
 function ContactSection() {
   return (
-    <section id="contact" className="py-28 md:py-36 px-6 md:px-12 border-t border-[#2a2a2a]">
+    <section id="contact" className="section-reveal py-28 md:py-36 px-6 md:px-12 border-t border-[#2a2a2a]">
       <div className="max-w-7xl mx-auto">
         <div className="mb-14 flex items-center gap-6">
           <span className="text-sm font-sans tracking-[0.24em] text-[#9a9a9a] uppercase whitespace-nowrap">
@@ -729,39 +727,40 @@ function ContactSection() {
           <div className="flex-1 h-px bg-[#2a2a2a]" />
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-end">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start md:items-end">
           <div>
             <h2
-              className="font-display font-extrabold leading-none tracking-tight text-[#f5f5f5] uppercase mb-7"
+              className="reveal font-display font-extrabold leading-none tracking-tight text-[#f5f5f5] uppercase mb-7"
               style={{ fontSize: "clamp(44px,7vw,88px)" }}
             >
               Contact
             </h2>
 
-            <p className="text-base md:text-lg font-sans font-light text-[#b5b5b5] leading-relaxed max-w-sm">
+            <p className="reveal reveal-delay-1 text-base md:text-lg font-sans font-light text-[#b5b5b5] leading-relaxed max-w-sm">
               Heb je een vraag over mijn werk, of wil je kijken of we samen iets kunnen opbouwen?
               Stuur een bericht — ik reageer binnen één werkdag.
             </p>
           </div>
 
-          <div className="flex flex-col gap-0">
+          <div className="flex flex-col gap-0 min-w-0">
             {[
               { label: "E-mail", value: "kajnie28@gmail.com", href: "mailto:kajnie28@gmail.com" },
               { label: "Telefoon", value: "+31 6 466 79022", href: "tel:+31646679022" },
               { label: "LinkedIn", value: "/in/kaj-niemeijer", href: "https://www.linkedin.com/in/kaj-niemeijer" },
-            ].map((item) => (
+            ].map((item, i) => (
               <a
                 key={item.label}
                 href={item.href}
                 target={item.href.startsWith("http") ? "_blank" : undefined}
                 rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                className="group flex items-baseline justify-between gap-4 border-b border-[#2a2a2a] py-6 hover:border-[#5a5a5a] transition-colors duration-300"
+                className="reveal group flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 sm:gap-4 border-b border-[#2a2a2a] py-5 md:py-6 hover:border-[#5a5a5a] min-w-0"
+                style={{ transitionDelay: `${i * 90}ms` }}
               >
                 <span className="text-xs font-sans tracking-[0.14em] text-[#9a9a9a] uppercase shrink-0">
                   {item.label}
                 </span>
 
-                <span className="font-display font-semibold text-[#f0f0f0] text-xl md:text-3xl uppercase tracking-wide group-hover:text-white transition-colors text-right">
+                <span className="font-display font-semibold text-[#f0f0f0] text-lg sm:text-2xl md:text-3xl uppercase tracking-wide group-hover:text-white text-left sm:text-right break-all min-w-0">
                   {item.value}
                 </span>
               </a>
@@ -777,7 +776,7 @@ function ContactSection() {
 function Footer() {
   return (
     <footer className="border-t border-[#2a2a2a] px-6 md:px-12 py-8">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
+      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
         <span className="text-xs font-sans tracking-[0.14em] text-[#7f7f7f] uppercase">
           © 2026 Kaj Niemeijer
         </span>
@@ -791,6 +790,29 @@ function Footer() {
 
 // ---- APP ----
 export default function App() {
+  useEffect(() => {
+    const items = document.querySelectorAll(".reveal, .section-reveal")
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible")
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -40px 0px",
+      }
+    )
+
+    items.forEach((item) => observer.observe(item))
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <div className="bg-[#111111] min-h-screen">
       <Nav />

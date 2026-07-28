@@ -1,7 +1,10 @@
-/* -----------------------------------
-   PROFESSIONAL BASIC ANIMATIONS
-   Subtle portfolio motion system
------------------------------------ */
+@import url("https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-display: "General Sans", sans-serif;
+  --font-sans: "General Sans", sans-serif;
+}
 
 :root {
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
@@ -11,47 +14,82 @@
   --dur-fast: 180ms;
   --dur-base: 280ms;
   --dur-slow: 480ms;
+  --dur-reveal: 700ms;
+  --dur-hero: 820ms;
 
   --lift-sm: translateY(-4px);
   --lift-md: translateY(-8px);
   --scale-sm: scale(1.02);
 }
 
-/* Algemene transitions voor interactieve elementen */
+html {
+  scroll-behavior: smooth;
+  background-color: #111111;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  color: #c8c8c8;
+  background-color: #111111;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+a {
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 640px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+}
+
 a,
 button,
 img,
-span,
-div,
-svg {
+svg,
+div {
   transition-property: color, background-color, border-color, opacity, transform, box-shadow, filter;
   transition-duration: var(--dur-base);
   transition-timing-function: var(--ease-smooth);
 }
 
-/* --------------------------
-   Fade / reveal utilities
--------------------------- */
-.fade-in {
-  animation: fadeIn var(--dur-slow) var(--ease-out-soft) both;
-}
-
-.fade-up {
-  animation: fadeUp 700ms var(--ease-out-soft) both;
-}
-
-.fade-down {
-  animation: fadeDown 700ms var(--ease-out-soft) both;
-}
-
-.fade-left {
-  animation: fadeLeft 700ms var(--ease-out-soft) both;
-}
-
-.fade-right {
-  animation: fadeRight 700ms var(--ease-out-soft) both;
-}
-
+/* ------------------------------ */
+/* Keyframes */
+/* ------------------------------ */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -75,7 +113,7 @@ svg {
 @keyframes fadeDown {
   from {
     opacity: 0;
-    transform: translateY(-22px);
+    transform: translateY(-18px);
   }
   to {
     opacity: 1;
@@ -83,64 +121,132 @@ svg {
   }
 }
 
-@keyframes fadeLeft {
+@keyframes fadeScale {
   from {
     opacity: 0;
-    transform: translateX(24px);
+    transform: scale(0.985);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: scale(1);
   }
 }
 
-@keyframes fadeRight {
+@keyframes popUp {
   from {
     opacity: 0;
-    transform: translateX(-24px);
+    transform: translateY(18px) scale(0.985);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(0) scale(1);
   }
 }
 
-/* --------------------------
-   Hover polish
--------------------------- */
-.hover-lift {
-  will-change: transform, box-shadow;
+/* ------------------------------ */
+/* Entry animations */
+/* ------------------------------ */
+.fade-in,
+.fade-up,
+.fade-down,
+.fade-scale,
+.pop-up {
+  opacity: 0;
 }
 
-.hover-lift:hover {
-  transform: var(--lift-sm);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+.fade-in {
+  animation: fadeIn var(--dur-reveal) var(--ease-out-soft) both;
 }
 
-.hover-lift-strong {
-  will-change: transform, box-shadow;
+.fade-up {
+  animation: fadeUp var(--dur-reveal) var(--ease-out-soft) both;
 }
 
-.hover-lift-strong:hover {
-  transform: var(--lift-md);
-  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.28);
+.fade-down {
+  animation: fadeDown 650ms var(--ease-out-soft) both;
 }
 
-.hover-scale {
-  will-change: transform;
+.fade-scale {
+  animation: fadeScale 700ms var(--ease-out-soft) both;
 }
 
-.hover-scale:hover {
-  transform: var(--scale-sm);
+.pop-up {
+  animation: popUp var(--dur-hero) var(--ease-out-soft) both;
 }
 
-.hover-brighten:hover {
-  filter: brightness(1.08);
+.stagger-1 {
+  animation-delay: 100ms;
 }
 
-/* --------------------------
-   Text / underline motion
--------------------------- */
+.stagger-2 {
+  animation-delay: 180ms;
+}
+
+.stagger-3 {
+  animation-delay: 260ms;
+}
+
+.stagger-4 {
+  animation-delay: 340ms;
+}
+
+.pop-delay-1 {
+  animation-delay: 120ms;
+}
+
+.pop-delay-2 {
+  animation-delay: 220ms;
+}
+
+.pop-delay-3 {
+  animation-delay: 320ms;
+}
+
+/* ------------------------------ */
+/* Scroll reveal */
+/* ------------------------------ */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity var(--dur-reveal) var(--ease-out-soft),
+    transform var(--dur-reveal) var(--ease-out-soft);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 {
+  transition-delay: 100ms;
+}
+
+.reveal-delay-2 {
+  transition-delay: 180ms;
+}
+
+.reveal-delay-3 {
+  transition-delay: 260ms;
+}
+
+.section-reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 800ms var(--ease-out-soft),
+    transform 800ms var(--ease-out-soft);
+}
+
+.section-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ------------------------------ */
+/* UI polish */
+/* ------------------------------ */
 .link-underline {
   position: relative;
 }
@@ -165,9 +271,6 @@ svg {
   transform-origin: left;
 }
 
-/* --------------------------
-   Button interactions
--------------------------- */
 .button-soft {
   position: relative;
   overflow: hidden;
@@ -201,9 +304,6 @@ svg {
   transform: translateX(120%);
 }
 
-/* --------------------------
-   Card polish
--------------------------- */
 .card-soft {
   position: relative;
   transition:
@@ -237,9 +337,6 @@ svg {
   opacity: 1;
 }
 
-/* --------------------------
-   Image zoom
--------------------------- */
 .media-zoom {
   overflow: hidden;
 }
@@ -256,9 +353,6 @@ svg {
   filter: brightness(1.04);
 }
 
-/* --------------------------
-   Navbar subtle effect
--------------------------- */
 .nav-fade {
   transition:
     background-color var(--dur-base) var(--ease-smooth),
@@ -266,9 +360,6 @@ svg {
     backdrop-filter var(--dur-base) var(--ease-smooth);
 }
 
-/* --------------------------
-   Accordion
--------------------------- */
 .accordion-icon {
   transition: transform var(--dur-base) var(--ease-smooth), color var(--dur-base) var(--ease-smooth);
 }
@@ -277,79 +368,12 @@ svg {
   transform: rotate(45deg);
 }
 
-.accordion-panel {
-  overflow: hidden;
-  transition:
-    max-height 420ms var(--ease-out-soft),
-    opacity 320ms var(--ease-smooth),
-    padding var(--dur-base) var(--ease-smooth);
-}
-
-/* --------------------------
-   Stagger helpers
--------------------------- */
-.stagger-1 { animation-delay: 80ms; }
-.stagger-2 { animation-delay: 160ms; }
-.stagger-3 { animation-delay: 240ms; }
-.stagger-4 { animation-delay: 320ms; }
-.stagger-5 { animation-delay: 400ms; }
-
-/* --------------------------
-   Scroll reveal prep
--------------------------- */
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition:
-    opacity 700ms var(--ease-out-soft),
-    transform 700ms var(--ease-out-soft);
-  will-change: opacity, transform;
-}
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Variants */
-.reveal-left {
-  opacity: 0;
-  transform: translateX(-28px);
-  transition:
-    opacity 700ms var(--ease-out-soft),
-    transform 700ms var(--ease-out-soft);
-}
-
-.reveal-left.is-visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.reveal-right {
-  opacity: 0;
-  transform: translateX(28px);
-  transition:
-    opacity 700ms var(--ease-out-soft),
-    transform 700ms var(--ease-out-soft);
-}
-
-.reveal-right.is-visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* --------------------------
-   Focus states
--------------------------- */
 a:focus-visible,
 button:focus-visible {
   outline: 2px solid rgba(255, 255, 255, 0.65);
   outline-offset: 4px;
 }
 
-/* --------------------------
-   Reduced motion
--------------------------- */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -361,8 +385,12 @@ button:focus-visible {
   }
 
   .reveal,
-  .reveal-left,
-  .reveal-right {
+  .section-reveal,
+  .fade-in,
+  .fade-up,
+  .fade-down,
+  .fade-scale,
+  .pop-up {
     opacity: 1 !important;
     transform: none !important;
   }
