@@ -118,7 +118,7 @@ const PROJECTS: Project[] = [
 
 const SKILLS = [
   { name: "3D Modelleren", tools: "Fusion 360 · Rhino 3D · KeyShot" },
-  { name: "Probleemanalyse & Onderzoek", tools: "Gebruikersinterviews · Benchmarking · Contextmapping" },
+  { name: "Probleemanalyse & Onderzoek", tools: "Gebruikersinterviews · Benchmarking" },
   { name: "Prototypen & Testen", tools: "Schuimmodellen · 3D-printen · Lasercutting" },
   { name: "Technische Uitwerking", tools: "Maattekeningen · Toleranties · Stuklijsten" },
   { name: "Ontwerpstrategie", tools: "PvE · Iteratiecycli · Stakeholdercommunicatie" },
@@ -170,29 +170,31 @@ function Nav() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "border-b border-[#1e1e1e] bg-[#080808]/95 backdrop-blur-sm" : ""
+        scrolled ? "border-b border-[#2a2a2a] bg-[#111111]/95 backdrop-blur-sm" : ""
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 h-16 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
         <a
           href="#"
-          className="font-display font-extrabold text-sm tracking-[0.25em] text-[#f0f0f0] uppercase"
+          className="font-display font-extrabold text-base tracking-[0.22em] text-[#f3f3f3] uppercase"
         >
           Kaj Niemeijer
         </a>
+
         <div className="hidden md:flex items-center gap-8">
           {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-xs font-sans tracking-[0.2em] text-[#555] uppercase hover:text-[#f0f0f0] transition-colors duration-200"
+              className="text-sm font-sans tracking-[0.14em] text-[#b0b0b0] uppercase hover:text-[#ffffff] transition-colors duration-200"
             >
               {link.label}
             </a>
           ))}
         </div>
+
         <button
-          className="md:hidden flex flex-col gap-[5px] w-5 py-1"
+          className="md:hidden flex flex-col gap-[5px] w-6 py-1"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Menu"
         >
@@ -213,14 +215,15 @@ function Nav() {
           />
         </button>
       </div>
+
       {menuOpen && (
-        <div className="md:hidden border-t border-[#1e1e1e] bg-[#080808] px-6 py-6 flex flex-col gap-5">
+        <div className="md:hidden border-t border-[#2a2a2a] bg-[#111111] px-6 py-6 flex flex-col gap-5">
           {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="text-xs font-sans tracking-[0.2em] text-[#c8c8c8] uppercase"
+              className="text-sm font-sans tracking-[0.14em] text-[#d0d0d0] uppercase"
             >
               {link.label}
             </a>
@@ -236,8 +239,10 @@ function Hero() {
   return (
     <section className="relative min-h-screen flex flex-col justify-end pb-24 px-6 md:px-12 pt-32 overflow-hidden">
       <div className="absolute inset-0 flex items-center justify-start pointer-events-none select-none overflow-hidden">
-        <span className="font-display font-extrabold leading-none tracking-tight text-[#0f0f0f] whitespace-nowrap pl-4"
-          style={{ fontSize: "clamp(140px,22vw,320px)" }}>
+        <span
+          className="font-display font-extrabold leading-none tracking-tight text-[#1b1b1b] whitespace-nowrap pl-4"
+          style={{ fontSize: "clamp(140px,22vw,320px)" }}
+        >
           KAJ
         </span>
       </div>
@@ -245,18 +250,22 @@ function Hero() {
       <div className="relative max-w-7xl mx-auto w-full">
         <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-end">
           <div>
-            <p className="text-xs font-sans tracking-[0.3em] text-[#444] uppercase mb-5">
+            <p className="text-sm font-sans tracking-[0.24em] text-[#9a9a9a] uppercase mb-5">
               Industrieel Productontwerper — NL
             </p>
+
             <h1
-              className="font-display font-extrabold leading-[0.92] tracking-tight text-[#f0f0f0] uppercase mb-10"
+              className="font-display font-extrabold leading-[0.92] tracking-tight text-[#f5f5f5] uppercase mb-10"
               style={{ fontSize: "clamp(52px,9vw,110px)" }}
             >
-              Kaj<br />Niemeijer
+              Kaj
+              <br />
+              Niemeijer
             </h1>
+
             <a
               href="#projecten"
-              className="inline-flex items-center gap-3 text-xs font-sans tracking-[0.2em] text-[#f0f0f0] uppercase border-b border-[#f0f0f0] pb-1 hover:text-[#666] hover:border-[#666] transition-colors duration-200"
+              className="inline-flex items-center gap-3 text-sm font-sans tracking-[0.16em] text-[#f5f5f5] uppercase border-b border-[#f5f5f5] pb-1 hover:text-[#b5b5b5] hover:border-[#b5b5b5] transition-colors duration-200"
             >
               Bekijk projecten
               <svg width="18" height="8" viewBox="0 0 18 8" fill="none" aria-hidden>
@@ -264,8 +273,9 @@ function Hero() {
               </svg>
             </a>
           </div>
+
           <div className="md:pb-2">
-            <p className="text-base font-sans font-light leading-relaxed text-[#777] max-w-sm">
+            <p className="text-lg font-sans font-light leading-relaxed text-[#b8b8b8] max-w-md">
               Ik ontwerp producten die werken doordat ik begrijp waarom een probleem bestaat.
               Mijn aanpak is zorgvuldig en onderbouwd — van eerste analyse tot productierijp ontwerp.
               Ik waardeer samenwerking en zie feedback als een middel om dieper inzicht te krijgen,
@@ -276,7 +286,7 @@ function Hero() {
       </div>
 
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center">
-        <div className="w-px h-14 bg-gradient-to-b from-transparent to-[#2a2a2a]" />
+        <div className="w-px h-14 bg-gradient-to-b from-transparent to-[#3a3a3a]" />
       </div>
     </section>
   )
@@ -308,17 +318,17 @@ function ProcessSection() {
   ]
 
   return (
-    <section id="proces" className="py-28 md:py-36 px-6 md:px-12 border-t border-[#1e1e1e]">
+    <section id="proces" className="py-28 md:py-36 px-6 md:px-12 border-t border-[#2a2a2a]">
       <div className="max-w-7xl mx-auto">
         <div className="mb-14 flex items-center gap-6">
-          <span className="text-xs font-sans tracking-[0.3em] text-[#444] uppercase whitespace-nowrap">
+          <span className="text-sm font-sans tracking-[0.24em] text-[#9a9a9a] uppercase whitespace-nowrap">
             Van probleem naar product
           </span>
-          <div className="flex-1 h-px bg-[#1a1a1a]" />
+          <div className="flex-1 h-px bg-[#2a2a2a]" />
         </div>
 
         <h2
-          className="font-display font-extrabold leading-none tracking-tight text-[#f0f0f0] uppercase mb-16 md:mb-20"
+          className="font-display font-extrabold leading-none tracking-tight text-[#f5f5f5] uppercase mb-16 md:mb-20"
           style={{ fontSize: "clamp(44px,7vw,88px)" }}
         >
           Hoe ik werk
@@ -328,20 +338,24 @@ function ProcessSection() {
           {steps.map((step, i) => (
             <div
               key={step.num}
-              className={`p-8 border-t border-[#1e1e1e] ${
-                i < 3 ? "lg:border-r" : ""
-              } ${i % 2 === 0 ? "md:border-r lg:border-r-0" : ""} ${
-                i === 2 ? "lg:border-r" : ""
+              className={`p-8 border-t border-[#2a2a2a] ${
+                i < 3 ? "lg:border-r lg:border-[#2a2a2a]" : ""
+              } ${i % 2 === 0 ? "md:border-r md:border-[#2a2a2a] lg:border-r-0" : ""} ${
+                i === 2 ? "lg:border-r lg:border-[#2a2a2a]" : ""
               }`}
             >
-              <span className="block font-display font-extrabold text-[#191919] leading-none mb-7"
-                style={{ fontSize: "clamp(56px,6vw,80px)" }}>
+              <span
+                className="block font-display font-extrabold text-[#252525] leading-none mb-7"
+                style={{ fontSize: "clamp(56px,6vw,80px)" }}
+              >
                 {step.num}
               </span>
-              <h3 className="font-display font-semibold text-[#f0f0f0] text-xl uppercase tracking-wide mb-4">
+
+              <h3 className="font-display font-semibold text-[#f0f0f0] text-2xl uppercase tracking-wide mb-4">
                 {step.title}
               </h3>
-              <p className="text-sm font-sans font-light text-[#666] leading-relaxed">
+
+              <p className="text-base font-sans font-light text-[#b0b0b0] leading-relaxed">
                 {step.desc}
               </p>
             </div>
@@ -356,27 +370,30 @@ function ProcessSection() {
 function ProjectCard({ project, onClick }: { project: Project; onClick: () => void }) {
   return (
     <button onClick={onClick} className="group text-left w-full focus:outline-none">
-      <div className="relative overflow-hidden bg-[#111] mb-5 aspect-[4/3]">
+      <div className="relative overflow-hidden bg-[#151515] mb-5 aspect-[4/3]">
         <img
           src={project.thumbnail}
           alt={project.title}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-[#080808] opacity-0 group-hover:opacity-50 transition-opacity duration-400" />
+        <div className="absolute inset-0 bg-[#111111] opacity-0 group-hover:opacity-45 transition-opacity duration-400" />
         <div className="absolute bottom-5 right-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <span className="text-[10px] font-sans tracking-[0.25em] text-white uppercase border border-white/30 px-3 py-1.5 bg-[#080808]/60 backdrop-blur-sm">
+          <span className="text-xs font-sans tracking-[0.16em] text-white uppercase border border-white/30 px-3 py-2 bg-[#111111]/70 backdrop-blur-sm">
             Bekijk project →
           </span>
         </div>
       </div>
+
       <div>
-        <p className="text-[10px] font-sans text-[#444] tracking-[0.2em] uppercase mb-1.5">
+        <p className="text-xs font-sans text-[#8f8f8f] tracking-[0.14em] uppercase mb-2">
           {project.category} — {project.year}
         </p>
-        <h3 className="font-display font-semibold text-[#f0f0f0] text-2xl uppercase tracking-wide leading-tight mb-2">
+
+        <h3 className="font-display font-semibold text-[#f0f0f0] text-3xl uppercase tracking-wide leading-tight mb-3">
           {project.title}
         </h3>
-        <p className="text-sm font-sans font-light text-[#555] leading-relaxed line-clamp-2">
+
+        <p className="text-base font-sans font-light text-[#b0b0b0] leading-relaxed line-clamp-2">
           {project.summary}
         </p>
       </div>
@@ -396,8 +413,10 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
       if (e.key === "ArrowLeft")
         setImgIndex((i) => (i - 1 + project.images.length) % project.images.length)
     }
+
     document.addEventListener("keydown", handler)
     document.body.style.overflow = "hidden"
+
     return () => {
       document.removeEventListener("keydown", handler)
       document.body.style.overflow = ""
@@ -406,30 +425,31 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
 
   const prev = () =>
     setImgIndex((i) => (i - 1 + project.images.length) % project.images.length)
+
   const next = () =>
     setImgIndex((i) => (i + 1) % project.images.length)
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-[#080808]/95 backdrop-blur-sm flex items-center justify-center p-4 md:p-8"
+      className="fixed inset-0 z-50 bg-[#111111]/95 backdrop-blur-sm flex items-center justify-center p-4 md:p-8"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose()
       }}
     >
-      <div className="w-full max-w-6xl max-h-[90vh] overflow-hidden bg-[#0d0d0d] border border-[#1e1e1e] flex flex-col">
-        {/* Header */}
-        <div className="flex justify-between items-center px-6 md:px-8 py-5 border-b border-[#1e1e1e] shrink-0">
+      <div className="w-full max-w-6xl max-h-[90vh] overflow-hidden bg-[#161616] border border-[#2a2a2a] flex flex-col">
+        <div className="flex justify-between items-center px-6 md:px-8 py-5 border-b border-[#2a2a2a] shrink-0">
           <div>
-            <p className="text-[10px] font-sans tracking-[0.2em] text-[#444] uppercase mb-1">
+            <p className="text-xs font-sans tracking-[0.14em] text-[#9a9a9a] uppercase mb-1">
               {project.category} — {project.year}
             </p>
-            <h2 className="font-display font-bold text-[#f0f0f0] text-2xl md:text-3xl uppercase tracking-wide leading-none">
+            <h2 className="font-display font-bold text-[#f0f0f0] text-3xl md:text-4xl uppercase tracking-wide leading-none">
               {project.title}
             </h2>
           </div>
+
           <button
             onClick={onClose}
-            className="w-9 h-9 flex items-center justify-center text-[#444] hover:text-[#f0f0f0] transition-colors border border-[#222] hover:border-[#555]"
+            className="w-10 h-10 flex items-center justify-center text-[#9a9a9a] hover:text-[#f0f0f0] transition-colors border border-[#2a2a2a] hover:border-[#7a7a7a]"
             aria-label="Sluiten"
           >
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
@@ -438,10 +458,8 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
           </button>
         </div>
 
-        {/* Body */}
         <div className="flex flex-col md:flex-row overflow-hidden flex-1 min-h-0">
-          {/* Image panel */}
-          <div className="md:w-[58%] bg-[#0a0a0a] flex flex-col shrink-0">
+          <div className="md:w-[58%] bg-[#0f0f0f] flex flex-col shrink-0">
             <div className="relative overflow-hidden" style={{ aspectRatio: "16/10" }}>
               <img
                 key={imgIndex}
@@ -450,32 +468,34 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
                 className="w-full h-full object-cover"
               />
             </div>
-            {/* Carousel controls */}
-            <div className="flex items-center justify-between px-6 py-4 border-t border-[#151515]">
+
+            <div className="flex items-center justify-between px-6 py-4 border-t border-[#222222]">
               <button
                 onClick={prev}
-                className="flex items-center gap-2 text-[10px] font-sans tracking-[0.2em] text-[#444] uppercase hover:text-[#f0f0f0] transition-colors"
+                className="flex items-center gap-2 text-xs font-sans tracking-[0.14em] text-[#b0b0b0] uppercase hover:text-[#f0f0f0] transition-colors"
               >
                 <svg width="14" height="8" viewBox="0 0 14 8" fill="none" aria-hidden>
                   <path d="M14 4H2M2 4L5 1.5M2 4L5 6.5" stroke="currentColor" strokeWidth="0.75" />
                 </svg>
                 Vorige
               </button>
+
               <div className="flex items-center gap-3">
                 {project.images.map((_, i) => (
                   <button
                     key={i}
                     onClick={() => setImgIndex(i)}
                     className={`h-px transition-all duration-300 ${
-                      i === imgIndex ? "w-8 bg-[#f0f0f0]" : "w-4 bg-[#333] hover:bg-[#555]"
+                      i === imgIndex ? "w-8 bg-[#f0f0f0]" : "w-4 bg-[#4a4a4a] hover:bg-[#888]"
                     }`}
                     aria-label={`Foto ${i + 1}`}
                   />
                 ))}
               </div>
+
               <button
                 onClick={next}
-                className="flex items-center gap-2 text-[10px] font-sans tracking-[0.2em] text-[#444] uppercase hover:text-[#f0f0f0] transition-colors"
+                className="flex items-center gap-2 text-xs font-sans tracking-[0.14em] text-[#b0b0b0] uppercase hover:text-[#f0f0f0] transition-colors"
               >
                 Volgende
                 <svg width="14" height="8" viewBox="0 0 14 8" fill="none" aria-hidden>
@@ -485,46 +505,49 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
             </div>
           </div>
 
-          {/* Info panel */}
-          <div className="flex-1 overflow-y-auto border-t md:border-t-0 md:border-l border-[#1e1e1e]">
-            <div className="p-6 md:p-8 flex flex-col gap-7">
+          <div className="flex-1 overflow-y-auto border-t md:border-t-0 md:border-l border-[#2a2a2a]">
+            <div className="p-6 md:p-8 flex flex-col gap-8">
               <div>
-                <p className="text-[10px] font-sans tracking-[0.2em] text-[#444] uppercase mb-2">
+                <p className="text-xs font-sans tracking-[0.14em] text-[#9a9a9a] uppercase mb-3">
                   Omschrijving
                 </p>
-                <p className="text-sm font-sans font-light text-[#888] leading-relaxed">
+                <p className="text-base md:text-lg font-sans font-light text-[#c0c0c0] leading-relaxed">
                   {project.description}
                 </p>
               </div>
-              <div className="border-t border-[#181818] pt-7">
-                <p className="text-[10px] font-sans tracking-[0.2em] text-[#444] uppercase mb-2">
+
+              <div className="border-t border-[#242424] pt-7">
+                <p className="text-xs font-sans tracking-[0.14em] text-[#9a9a9a] uppercase mb-3">
                   Uitdaging
                 </p>
-                <p className="text-sm font-sans font-light text-[#888] leading-relaxed">
+                <p className="text-base md:text-lg font-sans font-light text-[#c0c0c0] leading-relaxed">
                   {project.challenge}
                 </p>
               </div>
-              <div className="border-t border-[#181818] pt-7">
-                <p className="text-[10px] font-sans tracking-[0.2em] text-[#444] uppercase mb-2">
+
+              <div className="border-t border-[#242424] pt-7">
+                <p className="text-xs font-sans tracking-[0.14em] text-[#9a9a9a] uppercase mb-3">
                   Aanpak
                 </p>
-                <p className="text-sm font-sans font-light text-[#888] leading-relaxed">
+                <p className="text-base md:text-lg font-sans font-light text-[#c0c0c0] leading-relaxed">
                   {project.process}
                 </p>
               </div>
-              <div className="border-t border-[#181818] pt-7">
-                <p className="text-[10px] font-sans tracking-[0.2em] text-[#444] uppercase mb-2">
+
+              <div className="border-t border-[#242424] pt-7">
+                <p className="text-xs font-sans tracking-[0.14em] text-[#9a9a9a] uppercase mb-3">
                   Resultaat
                 </p>
-                <p className="text-sm font-sans font-light text-[#888] leading-relaxed">
+                <p className="text-base md:text-lg font-sans font-light text-[#c0c0c0] leading-relaxed">
                   {project.outcome}
                 </p>
               </div>
-              <div className="border-t border-[#181818] pt-7 flex flex-wrap gap-2">
+
+              <div className="border-t border-[#242424] pt-7 flex flex-wrap gap-3">
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="text-[10px] font-sans tracking-[0.15em] text-[#555] uppercase border border-[#222] px-3 py-1.5"
+                    className="text-xs font-sans tracking-[0.12em] text-[#b5b5b5] uppercase border border-[#343434] px-3 py-2"
                   >
                     {tag}
                   </span>
@@ -543,17 +566,17 @@ function ProjectsSection() {
   const [active, setActive] = useState<Project | null>(null)
 
   return (
-    <section id="projecten" className="py-28 md:py-36 px-6 md:px-12 border-t border-[#1e1e1e]">
+    <section id="projecten" className="py-28 md:py-36 px-6 md:px-12 border-t border-[#2a2a2a]">
       <div className="max-w-7xl mx-auto">
         <div className="mb-14 flex items-center gap-6">
-          <span className="text-xs font-sans tracking-[0.3em] text-[#444] uppercase whitespace-nowrap">
+          <span className="text-sm font-sans tracking-[0.24em] text-[#9a9a9a] uppercase whitespace-nowrap">
             Werk
           </span>
-          <div className="flex-1 h-px bg-[#1a1a1a]" />
+          <div className="flex-1 h-px bg-[#2a2a2a]" />
         </div>
 
         <h2
-          className="font-display font-extrabold leading-none tracking-tight text-[#f0f0f0] uppercase mb-16 md:mb-20"
+          className="font-display font-extrabold leading-none tracking-tight text-[#f5f5f5] uppercase mb-16 md:mb-20"
           style={{ fontSize: "clamp(44px,7vw,88px)" }}
         >
           Projecten
@@ -580,24 +603,25 @@ function ProjectsSection() {
 // ---- SKILLS ----
 function SkillsSection() {
   return (
-    <section id="skills" className="py-28 md:py-36 px-6 md:px-12 border-t border-[#1e1e1e]">
+    <section id="skills" className="py-28 md:py-36 px-6 md:px-12 border-t border-[#2a2a2a]">
       <div className="max-w-7xl mx-auto">
         <div className="mb-14 flex items-center gap-6">
-          <span className="text-xs font-sans tracking-[0.3em] text-[#444] uppercase whitespace-nowrap">
+          <span className="text-sm font-sans tracking-[0.24em] text-[#9a9a9a] uppercase whitespace-nowrap">
             Competenties
           </span>
-          <div className="flex-1 h-px bg-[#1a1a1a]" />
+          <div className="flex-1 h-px bg-[#2a2a2a]" />
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 md:gap-20">
           <div>
             <h2
-              className="font-display font-extrabold leading-none tracking-tight text-[#f0f0f0] uppercase mb-6"
+              className="font-display font-extrabold leading-none tracking-tight text-[#f5f5f5] uppercase mb-6"
               style={{ fontSize: "clamp(44px,7vw,88px)" }}
             >
               Skills
             </h2>
-            <p className="text-sm font-sans font-light text-[#666] leading-relaxed max-w-xs">
+
+            <p className="text-base md:text-lg font-sans font-light text-[#b5b5b5] leading-relaxed max-w-sm">
               Mijn vaardigheden verbinden analytisch onderzoek met technisch maakwerk.
               Ik werk het liefst in trajecten waarbij beide kanten nodig zijn.
             </p>
@@ -607,14 +631,15 @@ function SkillsSection() {
             {SKILLS.map((skill, i) => (
               <div
                 key={skill.name}
-                className={`py-5 flex items-baseline justify-between gap-4 ${
-                  i < SKILLS.length - 1 ? "border-b border-[#181818]" : ""
-                } ${i === 0 ? "border-t border-[#181818]" : ""}`}
+                className={`py-6 flex items-baseline justify-between gap-6 ${
+                  i < SKILLS.length - 1 ? "border-b border-[#242424]" : ""
+                } ${i === 0 ? "border-t border-[#242424]" : ""}`}
               >
-                <span className="font-display font-semibold text-[#d0d0d0] text-lg uppercase tracking-wide">
+                <span className="font-display font-semibold text-[#e3e3e3] text-xl md:text-2xl uppercase tracking-wide">
                   {skill.name}
                 </span>
-                <span className="text-[10px] font-sans text-[#3a3a3a] text-right shrink-0 tracking-wide">
+
+                <span className="text-sm font-sans text-[#9f9f9f] text-right shrink-0 tracking-wide">
                   {skill.tools}
                 </span>
               </div>
@@ -631,19 +656,19 @@ function FAQSection() {
   const [open, setOpen] = useState<number | null>(null)
 
   return (
-    <section id="faq" className="py-28 md:py-36 px-6 md:px-12 border-t border-[#1e1e1e]">
+    <section id="faq" className="py-28 md:py-36 px-6 md:px-12 border-t border-[#2a2a2a]">
       <div className="max-w-7xl mx-auto">
         <div className="mb-14 flex items-center gap-6">
-          <span className="text-xs font-sans tracking-[0.3em] text-[#444] uppercase whitespace-nowrap">
+          <span className="text-sm font-sans tracking-[0.24em] text-[#9a9a9a] uppercase whitespace-nowrap">
             Vragen
           </span>
-          <div className="flex-1 h-px bg-[#1a1a1a]" />
+          <div className="flex-1 h-px bg-[#2a2a2a]" />
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 md:gap-20">
           <div>
             <h2
-              className="font-display font-extrabold leading-none tracking-tight text-[#f0f0f0] uppercase"
+              className="font-display font-extrabold leading-none tracking-tight text-[#f5f5f5] uppercase"
               style={{ fontSize: "clamp(44px,7vw,88px)" }}
             >
               FAQ
@@ -654,30 +679,32 @@ function FAQSection() {
             {FAQ_ITEMS.map((item, i) => (
               <div
                 key={i}
-                className={`border-b border-[#1e1e1e] ${i === 0 ? "border-t" : ""}`}
+                className={`border-b border-[#2a2a2a] ${i === 0 ? "border-t" : ""}`}
               >
                 <button
-                  className="w-full py-5 flex items-start justify-between gap-4 text-left group"
+                  className="w-full py-6 flex items-start justify-between gap-4 text-left group"
                   onClick={() => setOpen(open === i ? null : i)}
                 >
-                  <span className="font-display font-semibold text-[#c8c8c8] text-base md:text-lg uppercase tracking-wide leading-snug">
+                  <span className="font-display font-semibold text-[#dddddd] text-lg md:text-xl uppercase tracking-wide leading-snug">
                     {item.q}
                   </span>
+
                   <span
-                    className="shrink-0 mt-1 text-[#444] transition-transform duration-200 group-hover:text-[#888]"
+                    className="shrink-0 mt-1 text-[#8e8e8e] transition-transform duration-200 group-hover:text-[#d0d0d0]"
                     style={{ transform: open === i ? "rotate(45deg)" : "rotate(0deg)" }}
                   >
-                    <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden>
+                    <svg width="12" height="12" viewBox="0 0 11 11" fill="none" aria-hidden>
                       <path d="M5.5 0V11M0 5.5H11" stroke="currentColor" strokeWidth="0.75" />
                     </svg>
                   </span>
                 </button>
+
                 <div
                   className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                    open === i ? "max-h-60 pb-6" : "max-h-0"
+                    open === i ? "max-h-72 pb-6" : "max-h-0"
                   }`}
                 >
-                  <p className="text-sm font-sans font-light text-[#666] leading-relaxed">
+                  <p className="text-base md:text-lg font-sans font-light text-[#b8b8b8] leading-relaxed">
                     {item.a}
                   </p>
                 </div>
@@ -693,24 +720,25 @@ function FAQSection() {
 // ---- CONTACT ----
 function ContactSection() {
   return (
-    <section id="contact" className="py-28 md:py-36 px-6 md:px-12 border-t border-[#1e1e1e]">
+    <section id="contact" className="py-28 md:py-36 px-6 md:px-12 border-t border-[#2a2a2a]">
       <div className="max-w-7xl mx-auto">
         <div className="mb-14 flex items-center gap-6">
-          <span className="text-xs font-sans tracking-[0.3em] text-[#444] uppercase whitespace-nowrap">
+          <span className="text-sm font-sans tracking-[0.24em] text-[#9a9a9a] uppercase whitespace-nowrap">
             Bereikbaar
           </span>
-          <div className="flex-1 h-px bg-[#1a1a1a]" />
+          <div className="flex-1 h-px bg-[#2a2a2a]" />
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-end">
           <div>
             <h2
-              className="font-display font-extrabold leading-none tracking-tight text-[#f0f0f0] uppercase mb-7"
+              className="font-display font-extrabold leading-none tracking-tight text-[#f5f5f5] uppercase mb-7"
               style={{ fontSize: "clamp(44px,7vw,88px)" }}
             >
               Contact
             </h2>
-            <p className="text-sm font-sans font-light text-[#666] leading-relaxed max-w-xs">
+
+            <p className="text-base md:text-lg font-sans font-light text-[#b5b5b5] leading-relaxed max-w-sm">
               Heb je een vraag over mijn werk, of wil je kijken of we samen iets kunnen opbouwen?
               Stuur een bericht — ik reageer binnen één werkdag.
             </p>
@@ -727,12 +755,13 @@ function ContactSection() {
                 href={item.href}
                 target={item.href.startsWith("http") ? "_blank" : undefined}
                 rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                className="group flex items-baseline justify-between gap-4 border-b border-[#1e1e1e] py-5 hover:border-[#444] transition-colors duration-300"
+                className="group flex items-baseline justify-between gap-4 border-b border-[#2a2a2a] py-6 hover:border-[#5a5a5a] transition-colors duration-300"
               >
-                <span className="text-[10px] font-sans tracking-[0.2em] text-[#444] uppercase shrink-0">
+                <span className="text-xs font-sans tracking-[0.14em] text-[#9a9a9a] uppercase shrink-0">
                   {item.label}
                 </span>
-                <span className="font-display font-semibold text-[#f0f0f0] text-xl md:text-2xl uppercase tracking-wide group-hover:text-white transition-colors text-right">
+
+                <span className="font-display font-semibold text-[#f0f0f0] text-xl md:text-3xl uppercase tracking-wide group-hover:text-white transition-colors text-right">
                   {item.value}
                 </span>
               </a>
@@ -747,12 +776,12 @@ function ContactSection() {
 // ---- FOOTER ----
 function Footer() {
   return (
-    <footer className="border-t border-[#1e1e1e] px-6 md:px-12 py-8">
+    <footer className="border-t border-[#2a2a2a] px-6 md:px-12 py-8">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <span className="text-[10px] font-sans tracking-[0.2em] text-[#333] uppercase">
-          © 2024 Kaj Niemeijer
+        <span className="text-xs font-sans tracking-[0.14em] text-[#7f7f7f] uppercase">
+          © 2026 Kaj Niemeijer
         </span>
-        <span className="text-[10px] font-sans tracking-[0.2em] text-[#333] uppercase">
+        <span className="text-xs font-sans tracking-[0.14em] text-[#7f7f7f] uppercase">
           Industrieel Productontwerper
         </span>
       </div>
@@ -763,7 +792,7 @@ function Footer() {
 // ---- APP ----
 export default function App() {
   return (
-    <div className="bg-[#080808] min-h-screen">
+    <div className="bg-[#111111] min-h-screen">
       <Nav />
       <Hero />
       <ProcessSection />
