@@ -234,6 +234,41 @@ function Nav() {
   )
 }
 
+// ---- HERO PHOTO COLLAGE (eye-catcher) ----
+// A handful of project stills, scattered and gently floating, so the page
+// reads as "portfolio" within the first second — without competing with the headline.
+function HeroCollage() {
+  const shots = [
+    { src: PROJECTS[0].thumbnail, top: "4%", left: "54%", w: 240, h: 300, rot: -7 },
+    { src: PROJECTS[1].thumbnail, top: "42%", left: "78%", w: 190, h: 238, rot: 6 },
+    { src: PROJECTS[2].thumbnail, top: "76%", left: "84%", w: 129, h: 210, rot: 9 },
+    { src: PROJECTS[3].thumbnail, top: "0%", left: "80%", w: 154, h: 154, rot: -4 },
+  ]
+
+  return (
+    <div className="hidden lg:block absolute inset-0 pointer-events-none" aria-hidden>
+      {shots.map((s, i) => (
+        <div
+          key={i}
+          className={`hero-photo pop-up floaty floaty-delay-${i + 1}`}
+          style={{
+            top: s.top,
+            left: s.left,
+            width: s.w,
+            height: s.h,
+            // @ts-ignore custom property read by the floaty keyframes
+            "--float-rot": `${s.rot}deg`,
+            transform: `rotate(${s.rot}deg)`,
+            animationDelay: `${420 + i * 130}ms`,
+          }}
+        >
+          <img src={s.src} alt="" className="w-full h-full object-cover" />
+        </div>
+      ))}
+    </div>
+  )
+}
+
 // ---- HERO ----
 function Hero() {
   return (
@@ -246,6 +281,8 @@ function Hero() {
           KAJ
         </span>
       </div>
+
+      <HeroCollage />
 
       <div className="relative max-w-7xl mx-auto w-full">
         <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-end">
@@ -599,6 +636,35 @@ function ProjectsSection() {
   )
 }
 
+// ---- MARQUEE BAND (the "special" break after Projecten) ----
+// A rotated, inverted-color strip with an infinite scrolling line of the
+// project disciplines. It's the one loud gesture in an otherwise quiet page —
+// everything around it stays disciplined so this reads as deliberate.
+function MarqueeBand() {
+  const words = Array.from(new Set(PROJECTS.map((p) => p.category)))
+  const loop = [...words, ...words]
+
+  return (
+    <div className="relative overflow-hidden py-3 md:py-4 bg-[#111111]">
+      <div className="marquee-band bg-[#f2f0ec] border-y-2 border-[#111111] py-7 md:py-10 w-[112%] -ml-[6%] overflow-hidden section-reveal">
+        <div className="marquee-track">
+          {loop.map((word, i) => (
+            <div key={i} className="flex items-center gap-8 md:gap-14 shrink-0 pr-8 md:pr-14">
+              <span
+                className="font-display font-extrabold text-[#111111] uppercase tracking-tight whitespace-nowrap"
+                style={{ fontSize: "clamp(30px,5vw,60px)" }}
+              >
+                {word}
+              </span>
+              <span className="text-[#111111]/35 text-2xl md:text-4xl leading-none">✳</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 // ---- SKILLS ----
 function SkillsSection() {
   return (
@@ -819,6 +885,7 @@ export default function App() {
       <Hero />
       <ProcessSection />
       <ProjectsSection />
+      <MarqueeBand />
       <SkillsSection />
       <FAQSection />
       <ContactSection />

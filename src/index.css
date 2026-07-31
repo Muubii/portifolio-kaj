@@ -1,10 +1,25 @@
 @import url("https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap");
 @import "tailwindcss";
 
-
 @theme {
   --font-display: "General Sans", sans-serif;
   --font-sans: "General Sans", sans-serif;
+}
+
+:root {
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-soft: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --dur-fast: 180ms;
+  --dur-base: 280ms;
+  --dur-slow: 480ms;
+  --dur-reveal: 700ms;
+  --dur-hero: 820ms;
+
+  --lift-sm: translateY(-4px);
+  --lift-md: translateY(-8px);
+  --scale-sm: scale(1.02);
 }
 
 html {
@@ -59,5 +74,387 @@ a {
   html,
   body {
     overflow-x: hidden;
+  }
+}
+
+a,
+button,
+img,
+svg,
+div {
+  transition-property: color, background-color, border-color, opacity, transform, box-shadow, filter;
+  transition-duration: var(--dur-base);
+  transition-timing-function: var(--ease-smooth);
+}
+
+/* ------------------------------ */
+/* Keyframes */
+/* ------------------------------ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeScale {
+  from {
+    opacity: 0;
+    transform: scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes popUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ------------------------------ */
+/* Entry animations */
+/* ------------------------------ */
+.fade-in,
+.fade-up,
+.fade-down,
+.fade-scale,
+.pop-up {
+  opacity: 0;
+}
+
+.fade-in {
+  animation: fadeIn var(--dur-reveal) var(--ease-out-soft) both;
+}
+
+.fade-up {
+  animation: fadeUp var(--dur-reveal) var(--ease-out-soft) both;
+}
+
+.fade-down {
+  animation: fadeDown 650ms var(--ease-out-soft) both;
+}
+
+.fade-scale {
+  animation: fadeScale 700ms var(--ease-out-soft) both;
+}
+
+.pop-up {
+  animation: popUp var(--dur-hero) var(--ease-out-soft) both;
+}
+
+.stagger-1 {
+  animation-delay: 100ms;
+}
+
+.stagger-2 {
+  animation-delay: 180ms;
+}
+
+.stagger-3 {
+  animation-delay: 260ms;
+}
+
+.stagger-4 {
+  animation-delay: 340ms;
+}
+
+.pop-delay-1 {
+  animation-delay: 120ms;
+}
+
+.pop-delay-2 {
+  animation-delay: 220ms;
+}
+
+.pop-delay-3 {
+  animation-delay: 320ms;
+}
+
+/* ------------------------------ */
+/* Scroll reveal */
+/* ------------------------------ */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity var(--dur-reveal) var(--ease-out-soft),
+    transform var(--dur-reveal) var(--ease-out-soft);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 {
+  transition-delay: 100ms;
+}
+
+.reveal-delay-2 {
+  transition-delay: 180ms;
+}
+
+.reveal-delay-3 {
+  transition-delay: 260ms;
+}
+
+.section-reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 800ms var(--ease-out-soft),
+    transform 800ms var(--ease-out-soft);
+}
+
+.section-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ------------------------------ */
+/* UI polish */
+/* ------------------------------ */
+.link-underline {
+  position: relative;
+}
+
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--dur-base) var(--ease-smooth);
+  opacity: 0.9;
+}
+
+.link-underline:hover::after,
+.link-underline:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.button-soft {
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+}
+
+.button-soft:hover {
+  transform: translateY(-2px);
+}
+
+.button-soft:active {
+  transform: translateY(0);
+}
+
+.button-soft::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.06) 50%,
+    transparent 100%
+  );
+  transform: translateX(-120%);
+  transition: transform 700ms var(--ease-out-soft);
+  pointer-events: none;
+}
+
+.button-soft:hover::before {
+  transform: translateX(120%);
+}
+
+.card-soft {
+  position: relative;
+  transition:
+    transform var(--dur-base) var(--ease-smooth),
+    border-color var(--dur-base) var(--ease-smooth),
+    background-color var(--dur-base) var(--ease-smooth),
+    box-shadow var(--dur-base) var(--ease-smooth);
+}
+
+.card-soft:hover {
+  transform: translateY(-6px);
+  border-color: #3a3a3a;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.2);
+}
+
+.card-soft::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.025) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-smooth);
+  pointer-events: none;
+}
+
+.card-soft:hover::after {
+  opacity: 1;
+}
+
+.media-zoom {
+  overflow: hidden;
+}
+
+.media-zoom img {
+  transition:
+    transform 900ms var(--ease-out-soft),
+    filter var(--dur-base) var(--ease-smooth);
+  will-change: transform;
+}
+
+.media-zoom:hover img {
+  transform: scale(1.045);
+  filter: brightness(1.04);
+}
+
+.nav-fade {
+  transition:
+    background-color var(--dur-base) var(--ease-smooth),
+    border-color var(--dur-base) var(--ease-smooth),
+    backdrop-filter var(--dur-base) var(--ease-smooth);
+}
+
+.accordion-icon {
+  transition: transform var(--dur-base) var(--ease-smooth), color var(--dur-base) var(--ease-smooth);
+}
+
+.accordion-icon.is-open {
+  transform: rotate(45deg);
+}
+
+/* ------------------------------ */
+/* Hero collage (eye-catcher) */
+/* ------------------------------ */
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--float-rot, 0deg));
+  }
+  50% {
+    transform: translateY(-12px) rotate(var(--float-rot, 0deg));
+  }
+}
+
+.floaty {
+  animation: floaty 5.5s ease-in-out infinite;
+}
+
+.floaty-delay-1 {
+  animation-delay: 0.4s;
+}
+
+.floaty-delay-2 {
+  animation-delay: 1s;
+}
+
+.floaty-delay-3 {
+  animation-delay: 1.6s;
+}
+
+.hero-photo {
+  position: absolute;
+  overflow: hidden;
+  border: 1px solid #2e2e2e;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  background-color: #151515;
+}
+
+/* ------------------------------ */
+/* Marquee break (section divider)  */
+/* ------------------------------ */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 26s linear infinite;
+}
+
+.marquee-band {
+  transform: rotate(-1.4deg);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.65);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal,
+  .section-reveal,
+  .fade-in,
+  .fade-up,
+  .fade-down,
+  .fade-scale,
+  .pop-up {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .marquee-band {
+    transform: none;
   }
 }
